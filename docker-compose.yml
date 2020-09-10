@@ -48,6 +48,6 @@ services:
         soft: -1
         hard: -1
     ports:
-      - 9200:9200
+      - ${DOCKER_ES_PORT}:9200
     volumes:
       - ./docker/elasticsearch/esdatadir:/usr/share/elasticsearch/data
