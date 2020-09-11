@@ -20,6 +20,7 @@ class HttpKernel extends Kernel
         \App\Core\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Core\Http\Middleware\AlwaysExpectsJson::class,
+        \Fruitcake\Cors\HandleCors::class,
     ];
 
     /**
@@ -52,6 +53,7 @@ class HttpKernel extends Kernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'cors' => \Fruitcake\Cors\HandleCors::class,
     ];
 
     /**
