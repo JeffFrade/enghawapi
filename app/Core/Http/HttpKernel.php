@@ -30,7 +30,7 @@ class HttpKernel extends Kernel
      */
     protected $middlewareGroups = [
         'api' => [
-            'throttle:60,1',
+            //'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
