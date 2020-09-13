@@ -40,11 +40,25 @@ class MusicController extends Controller
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
-        $this->music->store($request->all());
+        $this->music->store($this->toValidate($request));
 
         return response()->json(['data' => $request->all(), 'status' => 1], 200);
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    private function toValidate(Request $request)
+    {
+        return $this->validate($request, [
+            'title' => 'required',
+            'music' => 'required'
+        ]);
     }
 }
