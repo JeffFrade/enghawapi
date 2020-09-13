@@ -41,10 +41,14 @@ class ElasticSearch
      */
     public function search(array $body = [])
     {
+
         $data = [
             'index' => env('ES_INDEX'),
-            'body' => $body
         ];
+
+        if (count($body) > 0) {
+            $data['body'] = $body;
+        }
 
         return $this->getClient()->search($data);
     }
@@ -91,11 +95,19 @@ class ElasticSearch
      */
     public function createSearchParams(array $search)
     {
-        return [
-            'query' => [
-                'match' => $search
-            ]
-        ];
+        $search = array_filter($search);
+
+        $query = [];
+
+        if (count($search) > 0) {
+            $query = [
+                'query' => [
+                    'match' => $search
+                ]
+            ];
+        }
+
+        return $query;
     }
 
     /**
